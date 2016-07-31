@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9078304d-b8da-4584-a6fa-f47c872a979c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idcomprobante" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     concat(persona.`nombre_persona`,' ',
+     persona.`apaterno`,' ',
+     persona.`amaterno`) as cliente,
+
+     persona.`num_documento` AS persona_num_documento,
+     persona.`direccion` AS persona_direccion,
+     persona.`telefono` AS persona_telefono,
+     boleta.`idcomprobante` AS boleta_idcomprobante,
+     boleta.`precio_total` AS boleta_precio_total,
+     boleta.`fecha` AS boleta_fecha,
+     detalleboleta.`nombre_producto` AS detalleboleta_nombre_producto,
+     detalleboleta.`cantidad_producto` AS detalleboleta_cantidad_producto,
+     detalleboleta.`precio_unitario` AS detalleboleta_precio_unitario,
+     detalleboleta.`subtotal` AS detalleboleta_subtotal
+FROM
+     `persona` persona INNER JOIN `cliente` cliente ON persona.`idpersona` = cliente.`idpersona`
+     INNER JOIN `boleta` boleta ON cliente.`idpersona` = boleta.`idcliente`
+     INNER JOIN `detalleboleta` detalleboleta ON boleta.`idcomprobante` = detalleboleta.`idcomprobante` WHERE boleta.`idcomprobante`=$P{idcomprobante}]]>
+	</queryString>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="persona_num_documento" class="java.lang.String"/>
+	<field name="persona_direccion" class="java.lang.String"/>
+	<field name="persona_telefono" class="java.lang.String"/>
+	<field name="boleta_idcomprobante" class="java.lang.Integer"/>
+	<field name="boleta_precio_total" class="java.math.BigDecimal"/>
+	<field name="boleta_fecha" class="java.sql.Timestamp"/>
+	<field name="detalleboleta_nombre_producto" class="java.lang.String"/>
+	<field name="detalleboleta_cantidad_producto" class="java.lang.String"/>
+	<field name="detalleboleta_precio_unitario" class="java.lang.String"/>
+	<field name="detalleboleta_subtotal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121" splitType="Stretch">
+			<rectangle>
+				<reportElement x="560" y="10" width="229" height="99" uuid="b0c490b5-89a6-4b44-91e2-e82da4d1a05b"/>
+			</rectangle>
+			<textField>
+				<reportElement x="721" y="82" width="68" height="25" forecolor="#CC0000" uuid="129df824-b2bb-4f5f-ba75-72a3e400bd36"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boleta_idcomprobante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="8" width="410" height="54" forecolor="#E95200" uuid="bdfe84d4-d315-41f7-8043-30d2d4188ba4"/>
+				<textElement>
+					<font fontName="Cambria" size="30" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[ALQUILER DE VESTIMENTAS TÍPICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="38" width="405" height="30" forecolor="#33CC00" uuid="57b94309-555e-4276-99ac-e69df933863e"/>
+				<textElement>
+					<font fontName="Blackoak Std" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costa, Sierra y Selva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="62" width="205" height="25" forecolor="#1760D4" uuid="a2854cb1-c8ad-4190-bdbc-d28639e1c0cf"/>
+				<textElement>
+					<font fontName="Blackoak Std" size="18"/>
+				</textElement>
+				<text><![CDATA["MACIR"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="87" width="405" height="20" uuid="7d5c3ff0-bf9f-43e3-905b-70ef49952e2f"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Jr. Aguilar 654 Int. 5 Huánuco  Cel.Claro:962753166 RPM:#990666234]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="560" y="42" width="229" height="36" backcolor="#CCFF33" uuid="07375329-205d-44a4-8b42-28c2622c5058"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="598" y="46" width="180" height="31" uuid="ce64fb86-5c50-42e1-b0bf-84615fd88ddc"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOLETA DE VENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="598" y="16" width="180" height="31" uuid="d445aafa-2f13-424d-a8a9-7e7d72c416d2"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC: 25478985541]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="0" width="100" height="20" uuid="9b0d9f4b-19af-44c8-9f5c-a85d4984d63f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Señor(es):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="26" width="100" height="20" uuid="d9fc05e5-273c-456b-8a5a-e1dfd753b3fc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="54" width="100" height="20" uuid="0e1d1026-9303-45ec-b4a7-cb0edf6d14a5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="54" width="71" height="20" uuid="75c27b20-0955-43d4-a213-019d77513c18"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="566" y="54" width="55" height="20" uuid="4149247d-21f6-417e-9e5f-60fcb7e12a5e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="0" width="354" height="20" forecolor="#666666" uuid="6d22bc8e-0131-42e3-9bde-0e6ba924043e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="26" width="100" height="20" forecolor="#666666" uuid="3006851a-1886-400d-a1a3-d636b82ef5a9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_num_documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="54" width="232" height="20" forecolor="#666666" uuid="bc11be92-4958-4e5e-814b-f3a37ddf7db9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="56" width="100" height="20" forecolor="#666666" uuid="355e91dd-eaea-46f6-a53c-10c02589cbc1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_telefono}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="621" y="56" width="168" height="20" forecolor="#666666" uuid="1321a4a7-5419-4ba7-90d9-14d81b6d38f6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boleta_fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="13" y="9" width="776" height="35" backcolor="#CCFF33" uuid="5566052a-f9d9-46d2-b38a-e009b03c9081"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="19" width="100" height="20" uuid="b365c5b7-8dda-4b5c-aace-4bb5f03b1b16"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANT.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="19" width="100" height="20" uuid="2521f224-def7-453a-9ddb-d2328eaf08b5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="19" width="100" height="20" uuid="cd826fe0-e1bf-4f46-8dad-d38979e7937d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P. UNIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="19" width="100" height="20" uuid="372e7960-395e-41af-8d27-9d7120d3300f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="0" width="100" height="20" forecolor="#666666" uuid="4c08537b-ec7d-4d2d-a212-e3aa9e398b63"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleboleta_cantidad_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="0" width="179" height="20" forecolor="#666666" uuid="c72137c1-7906-4087-8225-abdcd13e1f0f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleboleta_nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="100" height="20" forecolor="#666666" uuid="20187514-457b-4ec1-943a-fe3afd52ecf3"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleboleta_precio_unitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="667" y="0" width="100" height="20" forecolor="#666666" uuid="c341f2af-a91b-47c3-97b3-6d58d531f6c1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleboleta_subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="608" y="2" width="181" height="32" backcolor="#CCFF33" uuid="dd6b0bfb-c160-4a51-82f2-e4e3e96cdb71"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="621" y="9" width="73" height="20" uuid="8eb35817-368a-4848-bdcf-3bf58d13ae6b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL S/.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="9" width="76" height="20" forecolor="#FF0000" uuid="a5225b35-91ee-49c6-8022-4c7df87648e1"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boleta_precio_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="5" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="7" splitType="Stretch"/>
+	</summary>
+</jasperReport>

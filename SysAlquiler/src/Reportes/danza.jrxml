@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="696209e8-3768-4182-a0f2-bc960495f072">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     danza.`iddanza` AS danza_iddanza,
+     danza.`nombre_danza` AS danza_nombre_danza,
+     danza.`descripcion` AS danza_descripcion,
+     departamento.`nombre_departamento` AS departamento_nombre_departamento,
+     provincia.`nombre_provincia` AS provincia_nombre_provincia,
+     region.`nombre_region` AS region_nombre_region
+FROM
+     `departamento` departamento INNER JOIN `danza` danza ON departamento.`iddepartamento` = danza.`iddepartamento`
+     INNER JOIN `provincia` provincia ON departamento.`iddepartamento` = provincia.`iddepartamento`
+     AND provincia.`idprovincia` = danza.`idprovincia`
+     INNER JOIN `region` region ON provincia.`idregion` = region.`idregion`
+     AND region.`idregion` = danza.`idregion`
+     AND region.`idregion` = departamento.`idregion`]]>
+	</queryString>
+	<field name="danza_iddanza" class="java.lang.Integer"/>
+	<field name="danza_nombre_danza" class="java.lang.String"/>
+	<field name="danza_descripcion" class="java.lang.String"/>
+	<field name="departamento_nombre_departamento" class="java.lang.String"/>
+	<field name="provincia_nombre_provincia" class="java.lang.String"/>
+	<field name="region_nombre_region" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="fb33fcda-25b7-4635-8345-b98d9add5f04"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="945e9150-63df-430b-9010-f98b51310494"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA["MACIR"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="dee29c82-e4d7-4fc5-a9ba-8b521f3b2a8b"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte de Danzas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="574cdf0f-3da0-4863-8b2a-be99afa1b232"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="27" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d0ed444b-7c67-4006-91b6-7c3098cafbd1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="31" y="0" width="167" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fd839f65-4805-414f-be9e-22a5ce3f247f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="299" y="0" width="123" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bf09d522-5671-4aef-8600-39008cd39720"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="435" y="0" width="109" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="137653b5-9620-47e3-bc03-9ab95f60211b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="202" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0ffd6257-02e8-4a83-9ecd-04dd2ebb3baa"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REGION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="4d4f6505-0da5-4af4-9c19-a393de7cdb03"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="6" y="0" width="27" height="19" uuid="9f89c1d3-12b9-425f-a471-ef7a66a86089"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{danza_iddanza}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="220" y="0" width="66" height="20" uuid="6bc2cf89-d0db-4a1b-adc4-bd6c472578fd"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{region_nombre_region}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="34" y="0" width="170" height="20" uuid="2e2b46a2-8e32-46c2-87f3-4531ab6e9bd2"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{danza_nombre_danza}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="440" y="0" width="100" height="20" uuid="cdac931b-c93e-4ef5-9acb-045d53b39556"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento_nombre_departamento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="304" y="0" width="117" height="20" uuid="22eba67f-7df2-417b-95a9-504b9da4a6a4"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provincia_nombre_provincia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="6ec6cc05-805f-4399-aca6-7f6eff890a10"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="6ffcd305-2afe-48d0-be00-055a8f709a45"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="1783d7d8-4af5-4f49-a703-ee00932efd7e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

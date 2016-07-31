@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2e43370-7887-4d61-8a2f-f90d2e9fd7e7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="187"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechainicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechafinal" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     boleta.`idcomprobante` AS boleta_idcomprobante,
+     boleta.`idcliente` AS boleta_idcliente,
+     boleta.`precio_total` AS boleta_precio_total,
+     boleta.`fecha` AS boleta_fecha
+
+
+FROM
+     `boleta` boleta
+WHERE
+     fecha BETWEEN $P{fechainicial} AND $P{fechafinal}]]>
+	</queryString>
+	<field name="boleta_idcomprobante" class="java.lang.Integer"/>
+	<field name="boleta_idcliente" class="java.lang.Integer"/>
+	<field name="boleta_precio_total" class="java.lang.Double"/>
+	<field name="boleta_fecha" class="java.sql.Timestamp"/>
+	<variable name="SUMA" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{boleta_precio_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-19" y="-19" width="595" height="92" backcolor="#006699" uuid="e974e7d7-44d8-47d5-86fd-484a7ddd2086"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="4c1d3348-f4d8-4b13-a4f0-47596b924030"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA["MACIR"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="f831a230-a58e-40f9-b459-7ba0d7b2be79"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte de Ventas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="182" y="2" width="159" height="20" uuid="258a76a5-4c51-4d25-9371-51fd76565745"/>
+				<text><![CDATA[Fecha de Emision de la Boleta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="2" width="128" height="20" uuid="693e6503-441a-4c39-bad4-9a4e8af5a244"/>
+				<text><![CDATA[Número de Comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="2" width="100" height="20" uuid="20e1c68a-ff07-4e4b-876d-cf5532358f7a"/>
+				<text><![CDATA[Total de la Boleta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="214" y="0" width="100" height="20" uuid="6f66ab5a-f119-4d5a-b2ab-4caa9e5c05ae"/>
+				<textFieldExpression><![CDATA[$F{boleta_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6916f0b6-c8ba-4e7f-9148-136e8ae0fc43"/>
+				<textFieldExpression><![CDATA[$F{boleta_idcomprobante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="100" height="20" uuid="3ffdb35b-8ec0-4327-8572-35fcbad1140f"/>
+				<textFieldExpression><![CDATA[$F{boleta_precio_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="314" y="4" width="100" height="20" uuid="ec2e4cc7-d0ee-458c-8ded-8cd53d6081e9"/>
+				<text><![CDATA[Ganancia Total S/. ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="432" y="4" width="100" height="20" forecolor="#FF3300" uuid="3a0b895a-ed22-437b-bfe9-c9413814445d"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
